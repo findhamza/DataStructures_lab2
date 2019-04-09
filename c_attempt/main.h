@@ -19,5 +19,5 @@ struct tripleStack
 };
 
 /* function prototypes */
-struct tripleStack EqualAlloc(int);
+struct tripleStack EqualAlloc(int,int);
 int push(struct tripleStack,int);

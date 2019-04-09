@@ -17,10 +17,10 @@ int main()
 
 	//initial user interaction for values and boundaries
 	printf("Please enter lower bound (L): ");
-	scanf("%d",&initialBounds.lBound);
+	scanf("%d",&initialBounds.lBound); printf("%d",initialBounds.lBound);
 
 	printf("\nPlease enter upper bound (M): ");
-	scanf("%d",&initialBounds.mBound);
+	scanf("%d",&initialBounds.mBound); printf("%d",initialBounds.mBound);
 
 	stackSize = initialBounds.mBound - initialBounds.lBound;
 	printf("\nStack size: %d\n",stackSize);
@@ -28,55 +28,98 @@ int main()
 	printf("\nStack slot given to user is: [%d..%d]\n",usableBounds.lBound,usableBounds.mBound);
 
 	//build initial multi stack bounds
-	stack = EqualAlloc(stackSizeUsable);
+	stack = EqualAlloc(stackSizeUsable,initialBounds.lBound);
 	int mainArrSize = initialBounds.mBound-initialBounds.lBound;
 	char mainArr[mainArrSize][35];
+	for(int i=0; i<mainArrSize;i++)
+	{
+		mainArr[i][0] = 0;
+	}
+
 
 	//loop to push and pop
 	char cmd; int numcmd;
 	char name[35];
-	scanf("%c",&cmd);
+	memset(name,0,sizeof(name));
+//	scanf("%c",&cmd);
 	while(cmd != 's')
 	{
+		//push instructions
 		if(cmd=='I')
 		{
-			scanf("%d %s",&numcmd,name);
+			scanf("%d%s",&numcmd,name);
 			int pos = push(stack,numcmd);
 			switch(numcmd)
 			{
 				case 1:
-					stack.oneTop = pos;
+					if(stack.oneTop < stack.one.mBound)
+						stack.oneTop = pos;
+					else
+						stack.oneTop = stack.one.mBound;
 					break;
 				case 2:
-					stack.twoTop = pos;
+					if(stack.twoTop < stack.two.mBound)
+						stack.twoTop = pos;
+					else
+						stack.twoTop = stack.two.mBound;
 					break;
 				case 3:
-					stack.threeTop = pos;
+					if(stack.threeTop < stack.three.mBound)
+						stack.threeTop = pos;
+					else
+						stack.threeTop = stack.three.mBound;
 					break;
 				default:
 					printf("INVALID STACK REFERENCE");
 					break;
 			}
 			strcpy(mainArr[pos], name);
-
 		}
+
+		//pop instructions
+		else if(cmd=='D')
+		{
+			scanf("%d",&numcmd);
+			switch(numcmd)
+			{
+				case 1:
+					mainArr[stack.oneTop][0]=0;
+					if(stack.oneTop > stack.one.lBound)
+						stack.oneTop -= 1;
+					break;
+				case 2:
+					mainArr[stack.twoTop][0]=0;
+					if(stack.twoTop > stack.two.lBound)
+						stack.twoTop -= 1;
+					break;
+				case 3:
+					mainArr[stack.threeTop][0]=0;
+					if(stack.threeTop > stack.three.lBound)
+						stack.threeTop -= 1;
+					break;
+				default:
+					break;
+			}
+			printf("\nOperation: %c%d",cmd,numcmd);
+			memset(name,0,sizeof(name));
+		}
+		if(strlen(name)>0)
+			printf("\nOperation: %c%d %s",cmd,numcmd,name);
 		for(int i = 0; i<mainArrSize; i++)
 		{
-			if(mainArr[i] != "/0")
-				printf("\n%d: %s",i ,mainArr[i]);
-			else
-				printf("\n%d: ===",i);
+			if(strlen(mainArr[i])!=0)
+				printf("\n%d: %s",i+initialBounds.lBound ,mainArr[i]);
 		}
 
 
-
-		scanf("%c",&cmd);
+		printf("\n");
+		scanf("%*c%c",&cmd);
 	}
 
 	return 0;
 }
 
-struct tripleStack EqualAlloc(int stackSizeUsable)
+struct tripleStack EqualAlloc(int stackSizeUsable, int offset)
 {
 	int size = (int)trunc(stackSizeUsable/3);
 	struct tripleStack stack;
@@ -85,17 +128,17 @@ struct tripleStack EqualAlloc(int stackSizeUsable)
 		switch(i)
 		{
 			case 1:
-				stack.one.mBound = size*i;
+				stack.one.mBound = size*i+(offset*-1);
 				stack.one.lBound = (stack.one.mBound - size);
 				stack.oneTop = stack.one.lBound;
 				break;
 			case 2:
-				stack.two.mBound = size*i;
+				stack.two.mBound = size*i+(offset*-1);
 				stack.two.lBound = (stack.two.mBound - size);
 				stack.twoTop = stack.two.lBound;
 				break;
 			case 3:
-				stack.three.mBound = size*i+(stackSizeUsable-(size*2));
+				stack.three.mBound = size*i+(stackSizeUsable-(size*3))+(offset*-1);
 				stack.three.lBound = (stack.three.mBound - size);
 				stack.threeTop = stack.three.lBound;
 				break;
