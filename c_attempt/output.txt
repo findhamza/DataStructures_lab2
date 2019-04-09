@@ -343,13 +343,14 @@ Operation: I2 Rahul
 27: Ryan
 28: Adrian
 
-Stack One (L,T,M):   (0  ,1  ,5) size: 1
-Stack Two (L,T,M):   (6  ,18  ,22) size: 12
-Stack Three (L,T,M): (23  ,26  ,30) size: 3
-stack 2 top: 29
+Stack REPACK
+Stack One (L,T,M):   (0  ,2  ,5) size: 1
+Stack Two (L,T,M):   (6  ,19  ,22) size: 12
+Stack Three (L,T,M): (23  ,27  ,37) size: 3
 
 Operation: I2 Elwin
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -362,14 +363,13 @@ Operation: I2 Elwin
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: €‡¹cÿ
 24: Sagar
 25: Ryan
 26: Adrian
 
 Operation: I2 Victor
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -382,14 +382,14 @@ Operation: I2 Victor
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: Victor
+20: Victor
 24: Sagar
 25: Ryan
 26: Adrian
 
 Operation: I3 Corey
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -402,15 +402,15 @@ Operation: I3 Corey
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: Victor
+20: Victor
 24: Sagar
 25: Ryan
 26: Adrian
-27: Corey
+28: Corey
 
 Operation: I3 Bipin
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -423,16 +423,16 @@ Operation: I3 Bipin
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: Victor
+20: Victor
 24: Sagar
 25: Ryan
 26: Adrian
-27: Corey
-28: Bipin
+28: Corey
+29: Bipin
 
 Operation: I3 Frank
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -445,17 +445,17 @@ Operation: I3 Frank
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: Victor
+20: Victor
 24: Sagar
 25: Ryan
 26: Adrian
-27: Corey
-28: Bipin
-29: Frank
+28: Corey
+29: Bipin
+30: Frank
 
 Operation: I3 Nathan
 1: David
+2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -468,145 +468,117 @@ Operation: I3 Nathan
 16: Travis
 17: Devin
 18: Rahul
-20: Elwin
-21: Victor
+20: Victor
 24: Sagar
 25: Ryan
 26: Adrian
-27: Corey
-28: Bipin
-29: Frank
-30: Nathan
-
-Stack One (L,T,M):   (0  ,1  ,4) size: 1
-Stack Two (L,T,M):   (5  ,20  ,23) size: 15
-Stack Three (L,T,M): (24  ,31  ,34) size: 7
-stack 3 top: 42
-
-Operation: I3 Amber
-1: David
-6: Kyle
-7: Tyler
-8: Minh
-9: Jacob
-10: Bryce
-11: Ryan
-12: Jaylene
-13: Sagar
-14: Ayran
-15: Travis
-16: Devin
-17: Rahul
-19: Elwin
-20: Victor
-24: Sagar
-25: Sagar
-26: Ryan
-27: Adrian
 28: Corey
 29: Bipin
 30: Frank
 31: Nathan
-37: Amber
 
-Stack One (L,T,M):   (0  ,1  ,2) size: 1
-Stack Two (L,T,M):   (3  ,18  ,19) size: 15
-Stack Three (L,T,M): (20  ,33  ,34) size: 13
-stack 3 top: 44
+Operation: I3 Amber
+1: David
+2: Elwin
+7: Kyle
+8: Tyler
+9: Minh
+10: Jacob
+11: Bryce
+12: Ryan
+13: Jaylene
+14: Sagar
+15: Ayran
+16: Travis
+17: Devin
+18: Rahul
+20: Victor
+24: Sagar
+25: Ryan
+26: Adrian
+28: Corey
+29: Bipin
+30: Frank
+31: Nathan
+32: Amber
 
 Operation: I3 Amy
 1: David
-4: Kyle
-5: Tyler
-6: Minh
-7: Jacob
-8: Bryce
-9: Ryan
-10: Jaylene
-11: Sagar
-12: Ayran
-13: Travis
-14: Devin
-15: Rahul
-17: Elwin
-18: Victor
-21: Sagar
-22: Ryan
-23: Adrian
-24: Corey
-25: Bipin
-26: Frank
-27: Nathan
-33: Amber
-39: Amy
-56: —¹cÿ
-57: 
-
-Stack One (L,T,M):   (0  ,1  ,1) size: 1
-Stack Two (L,T,M):   (2  ,17  ,17) size: 15
-Stack Three (L,T,M): (18  ,37  ,37) size: 19
-stack 3 top: 48
+2: Elwin
+7: Kyle
+8: Tyler
+9: Minh
+10: Jacob
+11: Bryce
+12: Ryan
+13: Jaylene
+14: Sagar
+15: Ayran
+16: Travis
+17: Devin
+18: Rahul
+20: Victor
+24: Sagar
+25: Ryan
+26: Adrian
+28: Corey
+29: Bipin
+30: Frank
+31: Nathan
+32: Amber
+33: Amy
 
 Operation: I3 No
 1: David
-3: Kyle
-4: Tyler
-5: Minh
-6: Jacob
-7: Bryce
-8: Ryan
-9: Jaylene
-10: Sagar
-11: Ayran
-12: Travis
-13: Devin
-14: Rahul
-16: Elwin
-17: Victor
-19: Sagar
-20: Ryan
-21: Adrian
-22: Corey
-23: Bipin
-24: Frank
-25: Nathan
-31: Amber
-37: Amy
-43: No
-54: —¹cÿ
-55: 
-
-Stack One (L,T,M):   (0  ,1  ,1) size: 1
-Stack Two (L,T,M):   (2  ,17  ,17) size: 15
-Stack Three (L,T,M): (18  ,43  ,43) size: 25
-stack 3 top: 54
+2: Elwin
+7: Kyle
+8: Tyler
+9: Minh
+10: Jacob
+11: Bryce
+12: Ryan
+13: Jaylene
+14: Sagar
+15: Ayran
+16: Travis
+17: Devin
+18: Rahul
+20: Victor
+24: Sagar
+25: Ryan
+26: Adrian
+28: Corey
+29: Bipin
+30: Frank
+31: Nathan
+32: Amber
+33: Amy
+34: No
 
 Operation: I3 Hope
 1: David
-3: Kyle
-4: Tyler
-5: Minh
-6: Jacob
-7: Bryce
-8: Ryan
-9: Jaylene
-10: Sagar
-11: Ayran
-12: Travis
-13: Devin
-14: Rahul
-16: Elwin
-17: Victor
-19: Sagar
-20: Ryan
-21: Adrian
-22: Corey
-23: Bipin
-24: Frank
-25: Nathan
-31: Amber
-37: Amy
-43: No
-49: Hope
-54: —¹cÿ
-55: 
+2: Elwin
+7: Kyle
+8: Tyler
+9: Minh
+10: Jacob
+11: Bryce
+12: Ryan
+13: Jaylene
+14: Sagar
+15: Ayran
+16: Travis
+17: Devin
+18: Rahul
+20: Victor
+24: Sagar
+25: Ryan
+26: Adrian
+28: Corey
+29: Bipin
+30: Frank
+31: Nathan
+32: Amber
+33: Amy
+34: No
+35: Hope

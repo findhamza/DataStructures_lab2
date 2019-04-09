@@ -55,7 +55,29 @@ int main()
 					if(stack.oneTop < stack.one.mBound)
 						stack.oneTop = pos;
 					else
-						stack.oneTop = stack.one.mBound;
+					{
+						struct tripleStack tempStack = repack(mainArr,stack,stackSizeUsable);
+						char tempArr[mainArrSize][35];
+						int oneOffset = stack.one.lBound - tempStack.one.lBound;
+						int twoOffset = stack.two.lBound - tempStack.two.lBound;
+						int threeOffset = stack.three.lBound - tempStack.three.lBound;
+
+						for(int i=0; i<mainArrSize; i++)
+						{
+							if(i<=stack.one.mBound)
+								strcpy(tempArr[i-oneOffset],mainArr[i]);
+							else if(i>stack.two.lBound && i<=stack.two.mBound)
+								strcpy(tempArr[i-twoOffset],mainArr[i]);
+							else if(i>stack.three.lBound)
+								strcpy(tempArr[i-threeOffset],mainArr[i]);
+						}
+						for(int i=0; i<mainArrSize; i++)
+							strcpy(mainArr[i],tempArr[i]);
+						stack = tempStack;
+						//stack.twoTop += 2;
+						pos = stack.twoTop;
+					}
+					//	stack.oneTop = stack.one.mBound;
 					break;
 				case 2:
 					if(stack.twoTop < stack.two.mBound)
@@ -79,9 +101,9 @@ int main()
 						}
 						for(int i=0; i<mainArrSize; i++)
 							strcpy(mainArr[i],tempArr[i]);
-						stack = tempStack; printf("\nstack 2 top: %d\n",tempStack.twoTop);
-						stack.twoTop += 2;
-						pos = stack.twoTop;
+						stack = tempStack;
+						//stack.twoTop += 2;
+						pos = stack.oneTop;
 					}
 //						stack.twoTop = stack.two.mBound;
 					break;
@@ -107,8 +129,8 @@ int main()
 						}
 						for(int i=0; i<mainArrSize; i++)
 							strcpy(mainArr[i],tempArr[i]);
-						stack = tempStack; printf("\nstack 3 top: %d\n",tempStack.threeTop);
-						stack.threeTop += 6;
+						stack = tempStack;
+						//stack.threeTop += 6;
 						pos = stack.threeTop;
 					}
 //						stack.threeTop = stack.three.mBound;
@@ -151,10 +173,9 @@ int main()
 			printf("\nOperation: %c%d %s",cmd,numcmd,name);
 		for(int i = 0; i<mainArrSize; i++)
 		{
-			if(strlen(mainArr[i])!=0)
+			if(strlen(mainArr[i])!=0 && ((i>stack.one.lBound && i<=stack.oneTop) || (i>stack.two.lBound && i<=stack.twoTop) || (i>stack.three.lBound && i<=stack.threeTop)))
 				printf("\n%d: %s",i+initialBounds.lBound ,mainArr[i]);
 		}
-
 
 		printf("\n");
 		scanf("%*c%c",&cmd);
@@ -198,19 +219,19 @@ int push(struct tripleStack sData, int sNum)
 	switch(sNum)
 	{
 		case 1:
-			if(sData.oneTop < sData.two.lBound)
+			if(sData.oneTop <= sData.two.lBound)
 				return sData.oneTop+1;
 			else
 				return sData.oneTop;
 			break;
 		case 2:
-			if(sData.twoTop < sData.three.lBound)
+			if(sData.twoTop <= sData.three.lBound)
 				return sData.twoTop+1;
 			else
 				return sData.twoTop;
 			break;
 		case 3:
-			if(sData.threeTop < sData.three.mBound)
+			if(sData.threeTop <= sData.three.mBound)
 				return sData.threeTop+1;
 			else
 				return sData.threeTop;
@@ -255,21 +276,23 @@ struct tripleStack repack(char mainArr[][35], struct tripleStack stkptr, int usa
 
 	double oneFrac = oneSize/utilizedSpace;
 	stkptr.one.mBound = stkptr.one.lBound+oneSize+equalSpace+((int)trunc(oneFrac*dynamicSpace));
-	stkptr.oneTop = stkptr.one.lBound+oneSize;
+	stkptr.oneTop = stkptr.one.lBound+oneSize+1;
 
 	double twoFrac = twoSize/utilizedSpace;
 	stkptr.two.lBound = stkptr.one.mBound+1;
 	stkptr.two.mBound = stkptr.two.lBound+twoSize+equalSpace+((int)trunc(twoFrac*dynamicSpace));
-	stkptr.twoTop = stkptr.two.lBound+twoSize;
+	stkptr.twoTop = stkptr.two.lBound+twoSize+1;
 
 	double threeFrac = threeSize/utilizedSpace;
 	stkptr.three.lBound = stkptr.two.mBound+1;
-	stkptr.three.mBound = stkptr.three.lBound+threeSize+equalSpace+((int)trunc(threeFrac*dynamicSpace));
-	stkptr.threeTop = stkptr.three.lBound+threeSize;
+//	stkptr.three.mBound = stkptr.three.lBound+threeSize+equalSpace+((int)trunc(threeFrac*dynamicSpace));
+	stkptr.three.mBound = 48;
+	stkptr.threeTop = stkptr.three.lBound+threeSize+1;
 
+	printf("\nStack REPACK");
 	printf("\nStack One (L,T,M):   (%d  ,%d  ,%d) size: %d",stkptr.one.lBound-11,stkptr.oneTop-11,stkptr.one.mBound-11,oneSize);
 	printf("\nStack Two (L,T,M):   (%d  ,%d  ,%d) size: %d",stkptr.two.lBound-11,stkptr.twoTop-11,stkptr.two.mBound-11,twoSize);
-	printf("\nStack Three (L,T,M): (%d  ,%d  ,%d) size: %d",stkptr.three.lBound-11,stkptr.threeTop-11,stkptr.three.mBound-11,threeSize);
+	printf("\nStack Three (L,T,M): (%d  ,%d  ,%d) size: %d\n",stkptr.three.lBound-11,stkptr.threeTop-11,stkptr.three.mBound-11,threeSize);
 
 	return stkptr;
 }
