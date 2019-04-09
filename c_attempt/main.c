@@ -61,13 +61,57 @@ int main()
 					if(stack.twoTop < stack.two.mBound)
 						stack.twoTop = pos;
 					else
-						stack.twoTop = stack.two.mBound;
+					{
+						struct tripleStack tempStack = repack(mainArr,stack,stackSizeUsable);
+						char tempArr[mainArrSize][35];
+						int oneOffset = stack.one.lBound - tempStack.one.lBound;
+						int twoOffset = stack.two.lBound - tempStack.two.lBound;
+						int threeOffset = stack.three.lBound - tempStack.three.lBound;
+
+						for(int i=0; i<mainArrSize; i++)
+						{
+							if(i<=stack.one.mBound)
+								strcpy(tempArr[i-oneOffset],mainArr[i]);
+							else if(i>stack.two.lBound && i<=stack.two.mBound)
+								strcpy(tempArr[i-twoOffset],mainArr[i]);
+							else if(i>stack.three.lBound)
+								strcpy(tempArr[i-threeOffset],mainArr[i]);
+						}
+						for(int i=0; i<mainArrSize; i++)
+							strcpy(mainArr[i],tempArr[i]);
+						stack = tempStack; printf("\nstack 2 top: %d\n",tempStack.twoTop);
+						stack.twoTop += 2;
+						pos = stack.twoTop;
+					}
+//						stack.twoTop = stack.two.mBound;
 					break;
 				case 3:
 					if(stack.threeTop < stack.three.mBound)
 						stack.threeTop = pos;
 					else
-						stack.threeTop = stack.three.mBound;
+					{
+						struct tripleStack tempStack = repack(mainArr,stack,stackSizeUsable);
+						char tempArr[mainArrSize][35];
+						int oneOffset = stack.one.lBound - tempStack.one.lBound;
+						int twoOffset = stack.two.lBound - tempStack.two.lBound;
+						int threeOffset = stack.three.lBound - tempStack.three.lBound;
+
+						for(int i=0; i<mainArrSize; i++)
+						{
+							if(i<=stack.one.mBound)
+								strcpy(tempArr[i-oneOffset],mainArr[i]);
+							else if(i>stack.two.lBound && i<=stack.two.mBound)
+								strcpy(tempArr[i-twoOffset],mainArr[i]);
+							else if(i>stack.three.lBound)
+								strcpy(tempArr[i-threeOffset],mainArr[i]);
+						}
+						for(int i=0; i<mainArrSize; i++)
+							strcpy(mainArr[i],tempArr[i]);
+						stack = tempStack; printf("\nstack 3 top: %d\n",tempStack.threeTop);
+						stack.threeTop += 6;
+						pos = stack.threeTop;
+					}
+//						stack.threeTop = stack.three.mBound;
 					break;
 				default:
 					printf("INVALID STACK REFERENCE");
@@ -178,3 +222,54 @@ int push(struct tripleStack sData, int sNum)
 	return -1;
 }
 
+struct tripleStack repack(char mainArr[][35], struct tripleStack stkptr, int usable)
+{
+	int oneSize = stkptr.oneTop-stkptr.one.lBound;
+	int twoSize = stkptr.twoTop-stkptr.two.lBound;
+	int threeSize = stkptr.threeTop-stkptr.three.lBound;
+	int arrSize = sizeof(mainArr[0])/sizeof(mainArr[0][0]);
+
+/*	for(int i=0;i<arrSize;i++)
+	{
+		if(i<=stkptr.one.mBound)
+		{
+			if(strlen(mainArr[i])>0)
+				oneSize++;
+		}
+		else if(i>stkptr.two.lBound && i<=stkptr.two.mBound)
+		{
+			if(strlen(mainArr[i])>0)
+				twoSize++;
+		}
+		else if(i>stkptr.three.lBound)
+		{
+			if(strlen(mainArr[i])>0)
+				threeSize++;
+		}
+	}
+*/
+	int emptySpace = usable-oneSize-twoSize-threeSize;
+	int equalSpace = (int)trunc(emptySpace*.23);
+	int dynamicSpace = emptySpace - equalSpace;
+	int utilizedSpace = oneSize+twoSize+threeSize;
+
+	double oneFrac = oneSize/utilizedSpace;
+	stkptr.one.mBound = stkptr.one.lBound+oneSize+equalSpace+((int)trunc(oneFrac*dynamicSpace));
+	stkptr.oneTop = stkptr.one.lBound+oneSize;
+
+	double twoFrac = twoSize/utilizedSpace;
+	stkptr.two.lBound = stkptr.one.mBound+1;
+	stkptr.two.mBound = stkptr.two.lBound+twoSize+equalSpace+((int)trunc(twoFrac*dynamicSpace));
+	stkptr.twoTop = stkptr.two.lBound+twoSize;
+
+	double threeFrac = threeSize/utilizedSpace;
+	stkptr.three.lBound = stkptr.two.mBound+1;
+	stkptr.three.mBound = stkptr.three.lBound+threeSize+equalSpace+((int)trunc(threeFrac*dynamicSpace));
+	stkptr.threeTop = stkptr.three.lBound+threeSize;
+
+	printf("\nStack One (L,T,M):   (%d  ,%d  ,%d) size: %d",stkptr.one.lBound-11,stkptr.oneTop-11,stkptr.one.mBound-11,oneSize);
+	printf("\nStack Two (L,T,M):   (%d  ,%d  ,%d) size: %d",stkptr.two.lBound-11,stkptr.twoTop-11,stkptr.two.mBound-11,twoSize);
+	printf("\nStack Three (L,T,M): (%d  ,%d  ,%d) size: %d",stkptr.three.lBound-11,stkptr.threeTop-11,stkptr.three.mBound-11,threeSize);
+
+	return stkptr;
+}

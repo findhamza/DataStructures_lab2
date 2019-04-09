@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -I.
+CFLAGS = -I. -lm
 DEPS = main.h
 OBJ = main.o
 
