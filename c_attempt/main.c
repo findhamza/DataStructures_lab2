@@ -282,7 +282,7 @@ struct tripleStack repack(char mainArr[][35], struct tripleStack stkptr, int usa
 	printf("\nStack After REPACK");
 	struct tripleStack offstk = stkptr;
 //	offstk.oneTop -= 1;
-//	offstk.twoTop -= 1;
+	offstk.twoTop -= 1;
 //	offstk.threeTop -= 1;
 	stackStat(offstk);
 

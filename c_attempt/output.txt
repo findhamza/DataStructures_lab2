@@ -355,7 +355,7 @@ Stack Three (L,T,M): (25  ,28  ,37) quantity: 3
 
 Stack After REPACK
 Stack One (L,T,M):   (0  ,1  ,5) quantity: 1
-Stack Two (L,T,M):   (6  ,19  ,22) quantity: 13
+Stack Two (L,T,M):   (6  ,18  ,22) quantity: 12
 Stack Three (L,T,M): (22  ,25  ,37) quantity: 3
 
 Operation: I2 Elwin
