@@ -4,6 +4,11 @@ Stack size: 71
 
 Stack slot given to user is: [0..37]
 
+Stack Initial
+Stack One (L,T,M):   (0  ,0  ,12) quantity: 0
+Stack Two (L,T,M):   (12  ,12  ,24) quantity: 0
+Stack Three (L,T,M): (25  ,25  ,37) quantity: 0
+
 
 Operation: I1 David
 1: David
@@ -343,14 +348,18 @@ Operation: I2 Rahul
 27: Ryan
 28: Adrian
 
-Stack REPACK
-Stack One (L,T,M):   (0  ,2  ,5) size: 1
-Stack Two (L,T,M):   (6  ,19  ,22) size: 12
-Stack Three (L,T,M): (23  ,27  ,37) size: 3
+Stack Before REPACK
+Stack One (L,T,M):   (0  ,1  ,12) quantity: 1
+Stack Two (L,T,M):   (12  ,24  ,24) quantity: 12
+Stack Three (L,T,M): (25  ,28  ,37) quantity: 3
+
+Stack After REPACK
+Stack One (L,T,M):   (0  ,1  ,5) quantity: 1
+Stack Two (L,T,M):   (6  ,19  ,22) quantity: 13
+Stack Three (L,T,M): (22  ,25  ,37) quantity: 3
 
 Operation: I2 Elwin
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -363,13 +372,13 @@ Operation: I2 Elwin
 16: Travis
 17: Devin
 18: Rahul
-24: Sagar
-25: Ryan
-26: Adrian
+19: Elwin
+23: Sagar
+24: Ryan
+25: Adrian
 
 Operation: I2 Victor
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -382,14 +391,14 @@ Operation: I2 Victor
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
+23: Sagar
+24: Ryan
+25: Adrian
 
 Operation: I3 Corey
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -402,15 +411,15 @@ Operation: I3 Corey
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
 
 Operation: I3 Bipin
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -423,16 +432,16 @@ Operation: I3 Bipin
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
 
 Operation: I3 Frank
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -445,17 +454,17 @@ Operation: I3 Frank
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
 
 Operation: I3 Nathan
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -468,18 +477,18 @@ Operation: I3 Nathan
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
-31: Nathan
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
+29: Nathan
 
 Operation: I3 Amber
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -492,19 +501,19 @@ Operation: I3 Amber
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
-31: Nathan
-32: Amber
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
+29: Nathan
+30: Amber
 
 Operation: I3 Amy
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -517,20 +526,20 @@ Operation: I3 Amy
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
-31: Nathan
-32: Amber
-33: Amy
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
+29: Nathan
+30: Amber
+31: Amy
 
 Operation: I3 No
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -543,21 +552,21 @@ Operation: I3 No
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
-31: Nathan
-32: Amber
-33: Amy
-34: No
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
+29: Nathan
+30: Amber
+31: Amy
+32: No
 
 Operation: I3 Hope
 1: David
-2: Elwin
 7: Kyle
 8: Tyler
 9: Minh
@@ -570,15 +579,21 @@ Operation: I3 Hope
 16: Travis
 17: Devin
 18: Rahul
+19: Elwin
 20: Victor
-24: Sagar
-25: Ryan
-26: Adrian
-28: Corey
-29: Bipin
-30: Frank
-31: Nathan
-32: Amber
-33: Amy
-34: No
-35: Hope
+23: Sagar
+24: Ryan
+25: Adrian
+26: Corey
+27: Bipin
+28: Frank
+29: Nathan
+30: Amber
+31: Amy
+32: No
+33: Hope
+
+Stack Final
+Stack One (L,T,M):   (0  ,1  ,5) quantity: 1
+Stack Two (L,T,M):   (6  ,20  ,22) quantity: 14
+Stack Three (L,T,M): (22  ,33  ,37) quantity: 11
